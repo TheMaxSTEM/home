@@ -552,21 +552,21 @@
   <p class="section-intro">Have questions, want to join, or want to partner with us? Drop us a message and we'll get back to you soon.</p>
 
   <div class="contact-wrap">
-    <form onsubmit="handleSubmit(event)">
+    <form action="https://formspree.io/f/xzdoobnr" method="POST">
       <div class="form-row">
         <div class="form-group">
           <label for="name">your name</label>
-          <input type="text" id="name" placeholder="First Last" required>
+          <input type="text" id="name" name="name" placeholder="First Last" required>
         </div>
         <div class="form-group">
           <label for="email">email address</label>
-          <input type="email" id="email" placeholder="you@school.edu" required>
+          <input type="email" id="email" name="email" placeholder="you@school.edu" required>
         </div>
       </div>
 
       <div class="form-group">
         <label for="reason">i'm reaching out about...</label>
-        <select id="reason">
+        <select id="reason" name="reason">
           <option value="">Choose one</option>
           <option>Joining a program</option>
           <option>Volunteering with MaxSTEM</option>
@@ -579,13 +579,10 @@
 
       <div class="form-group">
         <label for="message">your message</label>
-        <textarea id="message" placeholder="Tell us a bit about yourself and what you're looking for..." required></textarea>
+        <textarea id="message" name="message" placeholder="Tell us a bit about yourself and what you're looking for..." required></textarea>
       </div>
 
-      <button type="submit" class="submit-btn" id="submitBtn">Send Message →</button>
-      <div id="formSuccess" style="display:none; margin-top:1rem; padding:1rem; background:rgba(163,230,53,0.1); border:0.5px solid rgba(163,230,53,0.3); border-radius:8px; color:var(--lime); font-size:0.9rem;">
-        ✓ Message sent! We'll be in touch soon.
-      </div>
+      <button type="submit" class="submit-btn">Send Message →</button>
     </form>
   </div>
 </section>
@@ -606,18 +603,6 @@
 </footer>
 
 <script>
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = document.getElementById('submitBtn');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  setTimeout(() => {
-    btn.style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
-  }, 1000);
-}
-
-// Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
