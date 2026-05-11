@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MaxSTEM — Student-Led Science & Learning</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,900;1,300;1,600&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #132040;
+    --blue: #1a56db;
+    --blue-light: #3b82f6;
+    --cyan: #06b6d4;
+    --lime: #a3e635;
+    --lime-dark: #65a30d;
+    --cream: #fdf8f0;
+    --warm-white: #fffdf9;
+    --text-muted: #94a3b8;
+    --border: rgba(255,255,255,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--navy);
+    color: #e2e8f0;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(10,22,40,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem; font-weight: 900;
+    color: var(--lime);
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span { color: #fff; }
+
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav a {
+    color: var(--text-muted); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: #fff; }
+
+  .nav-cta {
+    background: var(--lime); color: var(--navy) !important;
+    padding: 0.5rem 1.2rem; border-radius: 6px; font-weight: 600 !important;
+  }
+  .nav-cta:hover { background: #bef264 !important; color: var(--navy) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 3rem 5rem;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(rgba(163,230,53,0.5) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(163,230,53,0.5) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); pointer-events: none;
+  }
+  .orb1 { width: 500px; height: 500px; background: rgba(26,86,219,0.25); top: -100px; right: -100px; }
+  .orb2 { width: 350px; height: 350px; background: rgba(163,230,53,0.12); bottom: 50px; left: -80px; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(163,230,53,0.1);
+    border: 0.5px solid rgba(163,230,53,0.3);
+    color: var(--lime); font-size: 0.78rem; font-weight: 500;
+    padding: 0.35rem 0.9rem; border-radius: 999px;
+    margin-bottom: 2rem; width: fit-content;
+    font-family: 'DM Mono', monospace;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--lime);
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  h1 em { font-style: italic; color: var(--lime); }
+
+  .hero-sub {
+    font-size: 1.15rem; color: var(--text-muted);
+    max-width: 520px; margin-bottom: 2.5rem;
+    font-weight: 300; line-height: 1.7;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--lime); color: var(--navy);
+    padding: 0.85rem 2rem; border-radius: 8px;
+    font-weight: 600; font-size: 1rem;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #bef264; transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent; color: #fff;
+    padding: 0.85rem 2rem; border-radius: 8px;
+    font-weight: 500; font-size: 1rem;
+    text-decoration: none;
+    border: 0.5px solid rgba(255,255,255,0.2);
+    transition: border-color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.5); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 5rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+    padding-top: 2rem; border-top: 0.5px solid var(--border);
+  }
+
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem; font-weight: 900; color: #fff;
+    display: block;
+  }
+  .stat-label { font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* SECTION SHARED */
+  section { padding: 6rem 3rem; }
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; color: var(--lime);
+    text-transform: uppercase; letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900; line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #fff; margin-bottom: 1rem;
+  }
+  .section-intro { font-size: 1.05rem; color: var(--text-muted); max-width: 540px; margin-bottom: 3.5rem; font-weight: 300; }
+
+  /* ABOUT */
+  #about { background: var(--navy-mid); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-visual {
+    background: var(--navy);
+    border: 0.5px solid var(--border);
+    border-radius: 16px; padding: 2.5rem;
+    position: relative; overflow: hidden;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(163,230,53,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .mission-statement {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem; font-style: italic;
+    color: #fff; line-height: 1.5; font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+  .values-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .values-list li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 0.95rem; color: var(--text-muted);
+  }
+  .val-icon {
+    width: 20px; height: 20px; background: rgba(163,230,53,0.15);
+    border-radius: 4px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+    font-size: 0.7rem; color: var(--lime);
+  }
+
+  .about-text p { color: var(--text-muted); margin-bottom: 1rem; font-weight: 300; line-height: 1.8; }
+
+  /* PROGRAMS */
+  #programs { background: var(--navy); }
+  .programs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+
+  .program-card {
+    background: var(--navy-mid);
+    border: 0.5px solid var(--border);
+    border-radius: 16px; padding: 2rem;
+    position: relative; overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: default;
+  }
+  .program-card:hover { border-color: rgba(163,230,53,0.3); transform: translateY(-4px); }
+  .program-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at top right, rgba(163,230,53,0.05) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .program-card:hover::after { opacity: 1; }
+
+  .card-icon {
+    width: 48px; height: 48px;
+    background: rgba(163,230,53,0.1); border: 0.5px solid rgba(163,230,53,0.2);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem; font-size: 1.3rem;
+  }
+
+  .program-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem; font-weight: 600; color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .program-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+
+  .card-tag {
+    display: inline-block; margin-top: 1.25rem;
+    background: rgba(6,182,212,0.1); color: var(--cyan);
+    font-size: 0.72rem; font-family: 'DM Mono', monospace;
+    padding: 0.25rem 0.65rem; border-radius: 4px;
+    border: 0.5px solid rgba(6,182,212,0.2);
+  }
+
+  /* GET INVOLVED */
+  #involve { background: var(--navy-mid); }
+  .involve-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .involve-card {
+    background: var(--navy); border-radius: 16px;
+    border: 0.5px solid var(--border); padding: 2rem;
+  }
+  .involve-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem;
+  }
+  .involve-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 300; line-height: 1.7; }
+  .involve-card.highlight {
+    background: var(--lime); border-color: var(--lime);
+  }
+  .involve-card.highlight h3, .involve-card.highlight p { color: var(--navy); }
+  .involve-card.highlight .btn-dark {
+    background: var(--navy); color: var(--lime);
+    padding: 0.7rem 1.5rem; border-radius: 7px;
+    font-weight: 600; text-decoration: none; display: inline-block;
+    font-size: 0.9rem; transition: opacity 0.2s;
+  }
+  .involve-card.highlight .btn-dark:hover { opacity: 0.85; }
+
+  .step-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .step-list li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 0.9rem; color: var(--text-muted); font-weight: 300;
+  }
+  .step-num {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(163,230,53,0.15); border: 0.5px solid rgba(163,230,53,0.3);
+    color: var(--lime); font-size: 0.7rem; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px; font-family: 'DM Mono', monospace;
+  }
+
+  /* CONTACT */
+  #contact { background: var(--navy); }
+  .contact-wrap { max-width: 600px; }
+  .form-group { margin-bottom: 1.25rem; }
+  label { display: block; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.5rem; font-family: 'DM Mono', monospace; }
+  input, textarea, select {
+    width: 100%; background: var(--navy-mid);
+    border: 0.5px solid rgba(255,255,255,0.15);
+    border-radius: 8px; padding: 0.8rem 1rem;
+    color: #fff; font-family: 'Outfit', sans-serif; font-size: 0.95rem;
+    transition: border-color 0.2s; outline: none;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--lime); }
+  textarea { resize: vertical; min-height: 120px; }
+  select option { background: var(--navy-mid); }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .submit-btn {
+    background: var(--lime); color: var(--navy);
+    border: none; border-radius: 8px;
+    padding: 0.9rem 2rem; font-weight: 600; font-size: 1rem;
+    cursor: pointer; width: 100%; margin-top: 0.5rem;
+    transition: background 0.2s, transform 0.2s;
+    font-family: 'Outfit', sans-serif;
+  }
+  .submit-btn:hover { background: #bef264; transform: translateY(-1px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy-mid);
+    border-top: 0.5px solid var(--border);
+    padding: 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 900; color: var(--lime);
+  }
+  .footer-logo span { color: rgba(255,255,255,0.5); }
+  .footer-note { font-size: 0.8rem; color: var(--text-muted); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: #fff; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .involve-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Max<span>STEM</span></div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#involve">Get Involved</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Join Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Student-Led · Community-Driven · Free to Join
+  </div>
+
+  <h1>
+    Igniting the<br>
+    next <em>generation</em><br>
+    of thinkers.
+  </h1>
+
+  <p class="hero-sub">
+    MaxSTEM is a student-run organization making science, technology, engineering, and math accessible — through newspapers, summer camps, workshops, and more.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#programs" class="btn-primary">Explore Programs</a>
+    <a href="#involve" class="btn-outline">Volunteer with Us</a>
+  </div>
+
+  <div class="hero-stats">
+    <div>
+      <span class="stat-num">100%</span>
+      <span class="stat-label">Student Led</span>
+    </div>
+    <div>
+      <span class="stat-num">Free</span>
+      <span class="stat-label">To Participate</span>
+    </div>
+    <div>
+      <span class="stat-num">STEM+</span>
+      <span class="stat-label">Focused Programs</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-tag">// about us</div>
+      <h2>Built by students,<br>for students.</h2>
+      <p>MaxSTEM was founded by a student who believed that learning shouldn't stop at the classroom door. We believe every young person deserves access to hands-on STEM experiences — regardless of their background or resources.</p>
+      <p>We're not a big corporation or a registered nonprofit (yet). We're students who care deeply about education, and we're taking action. Every program, every newspaper issue, every camp — made and run by people just like you.</p>
+      <a href="#involve" class="btn-outline" style="margin-top:1rem;">Join Our Team →</a>
+    </div>
+    <div class="about-visual">
+      <div class="mission-statement">
+        "Every student deserves a chance to discover what they love — we're just here to spark it."
+      </div>
+      <ul class="values-list">
+        <li>
+          <div class="val-icon">✦</div>
+          <span>Accessible learning for every student, everywhere</span>
+        </li>
+        <li>
+          <div class="val-icon">✦</div>
+          <span>Real projects, not just textbook problems</span>
+        </li>
+        <li>
+          <div class="val-icon">✦</div>
+          <span>Mentorship and community at the core</span>
+        </li>
+        <li>
+          <div class="val-icon">✦</div>
+          <span>Student voices leading every decision</span>
+        </li>
+        <li>
+          <div class="val-icon">✦</div>
+          <span>Free and open participation, always</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="section-tag">// what we do</div>
+  <h2>Our programs.</h2>
+  <p class="section-intro">From monthly publications to summer adventures, MaxSTEM offers multiple ways for students to explore STEM — and lead it.</p>
+
+  <div class="programs-grid">
+    <div class="program-card">
+      <div class="card-icon">📰</div>
+      <h3>The MaxSTEM Gazette</h3>
+      <p>Our student-written science and tech newspaper covers breakthroughs, local projects, and inspiring student stories. Published monthly, written entirely by students.</p>
+      <span class="card-tag">Monthly Publication</span>
+    </div>
+
+    <div class="program-card">
+      <div class="card-icon">⛺</div>
+      <h3>Summer STEM Camps</h3>
+      <p>Multi-day immersive camps where students build robots, run experiments, code projects, and collaborate with peers. Led by older students and community mentors.</p>
+      <span class="card-tag">Summer Program</span>
+    </div>
+
+    <div class="program-card">
+      <div class="card-icon">🔬</div>
+      <h3>Workshop Wednesdays</h3>
+      <p>Weekly drop-in workshops tackling everything from chemistry to coding. Casual, hands-on, and open to all skill levels. Bring your curiosity.</p>
+      <span class="card-tag">Weekly · Free</span>
+    </div>
+
+    <div class="program-card">
+      <div class="card-icon">🏆</div>
+      <h3>Science Olympiad Prep</h3>
+      <p>Structured study groups and practice sessions for students preparing for regional and state Science Olympiad competitions. Coached by experienced competitors.</p>
+      <span class="card-tag">Competitive Prep</span>
+    </div>
+
+    <div class="program-card">
+      <div class="card-icon">🤝</div>
+      <h3>Peer Tutoring Network</h3>
+      <p>Students helping students. Our tutor network connects those who need help in STEM subjects with volunteers who have mastered them. Free for everyone.</p>
+      <span class="card-tag">Year-Round</span>
+    </div>
+
+    <div class="program-card">
+      <div class="card-icon">💡</div>
+      <h3>Innovation Fair</h3>
+      <p>Our annual showcase where student inventors, researchers, and engineers present original projects to peers, educators, and community members.</p>
+      <span class="card-tag">Annual Event</span>
+    </div>
+  </div>
+</section>
+
+<!-- GET INVOLVED -->
+<section id="involve">
+  <div class="section-tag">// get involved</div>
+  <h2>Make it happen.</h2>
+  <p class="section-intro">MaxSTEM runs because students step up. Whether you want to join a program or help run one, there's a place for you here.</p>
+
+  <div class="involve-grid">
+    <div class="involve-card highlight">
+      <h3>Volunteer with MaxSTEM</h3>
+      <p>Help organize events, write for the newspaper, mentor campers, or lead a workshop. No experience necessary — just enthusiasm and a willingness to show up.</p>
+      <a href="#contact" class="btn-dark">Apply to Volunteer</a>
+    </div>
+
+    <div class="involve-card">
+      <h3>Participate in Programs</h3>
+      <ul class="step-list">
+        <li><span class="step-num">1</span> Browse our programs above and find what interests you</li>
+        <li><span class="step-num">2</span> Fill out the contact form below with your interest</li>
+        <li><span class="step-num">3</span> We'll reach out with details, dates, and how to sign up</li>
+        <li><span class="step-num">4</span> Show up, learn something, and have a great time</li>
+      </ul>
+    </div>
+
+    <div class="involve-card">
+      <h3>Write for The Gazette</h3>
+      <p>Passionate about science? Have an opinion on tech? Want to interview a local researcher? Join our editorial team and get published. Open to all student writers.</p>
+    </div>
+
+    <div class="involve-card">
+      <h3>Spread the Word</h3>
+      <p>Tell your friends, share our work, or talk to a teacher about partnering with MaxSTEM. Community growth starts with people like you sharing what we do.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-tag">// reach out</div>
+  <h2>Say hello.</h2>
+  <p class="section-intro">Have questions, want to join, or want to partner with us? Drop us a message and we'll get back to you soon.</p>
+
+  <div class="contact-wrap">
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">your name</label>
+          <input type="text" id="name" placeholder="First Last" required>
+        </div>
+        <div class="form-group">
+          <label for="email">email address</label>
+          <input type="email" id="email" placeholder="you@school.edu" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reason">i'm reaching out about...</label>
+        <select id="reason">
+          <option value="">Choose one</option>
+          <option>Joining a program</option>
+          <option>Volunteering with MaxSTEM</option>
+          <option>Writing for The Gazette</option>
+          <option>School / teacher partnership</option>
+          <option>General question</option>
+          <option>Something else</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">your message</label>
+        <textarea id="message" placeholder="Tell us a bit about yourself and what you're looking for..." required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">Send Message →</button>
+      <div id="formSuccess" style="display:none; margin-top:1rem; padding:1rem; background:rgba(163,230,53,0.1); border:0.5px solid rgba(163,230,53,0.3); border-radius:8px; color:var(--lime); font-size:0.9rem;">
+        ✓ Message sent! We'll be in touch soon.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Max<span>STEM</span></div>
+    <div class="footer-note" style="margin-top:0.4rem;">A student-led initiative · Not officially registered</div>
+  </div>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#programs">Programs</a>
+    <a href="#involve">Volunteer</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="footer-note">© 2025 MaxSTEM. Made with ❤️ by students.</div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }, 1000);
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
