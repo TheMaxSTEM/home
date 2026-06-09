@@ -269,6 +269,23 @@
     border: 0.5px solid rgba(6,182,212,0.2);
   }
 
+  /* PROGRAM HIGHLIGHTS */
+  .highlights-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem; margin-top: 1.5rem;
+  }
+  .highlight-card {
+    background: var(--navy);
+    border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1.25rem;
+    transition: border-color 0.2s;
+  }
+  .highlight-card:hover { border-color: rgba(220,38,38,0.3); }
+  .hc-icon { font-size: 1.5rem; margin-bottom: 0.5rem; display: block; }
+  .hc-title { font-size: 0.9rem; font-weight: 600; color: #fff; margin-bottom: 0.25rem; }
+  .hc-desc { font-size: 0.8rem; color: var(--text-muted); font-weight: 300; line-height: 1.5; }
+  .hc-tool { font-size: 0.7rem; color: #f87171; margin-top: 0.4rem; font-family: 'DM Mono', monospace; }
+
   /* GET INVOLVED */
   #involve { background: var(--navy-mid); }
   .involve-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -465,27 +482,62 @@
   <h2>Our programs.</h2>
   <p class="section-intro">From monthly publications to summer adventures, MaxSTEM offers multiple ways for students to explore STEM — and lead it.</p>
 
-  <div class="program-card" style="border-color: rgba(220,60,60,0.3); grid-column: 1 / -1; position: relative; z-index: 1;">
-  <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
-    <div>
-      <div style="display:inline-flex; align-items:center; gap:0.5rem; background:rgba(220,60,60,0.1); border:0.5px solid rgba(220,60,60,0.3); color:#f87171; font-size:0.72rem; font-family:'DM Mono',monospace; padding:0.25rem 0.75rem; border-radius:999px; margin-bottom:0.75rem;">
-        <span style="width:6px;height:6px;border-radius:50%;background:#f87171;display:inline-block;"></span>
-        NOW ENROLLING · FIRST COME, FIRST SERVE
+  <div class="program-card" style="border-color: rgba(220,60,60,0.3); position: relative; z-index: 1;">
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+      <div>
+        <div style="display:inline-flex; align-items:center; gap:0.5rem; background:rgba(220,60,60,0.1); border:0.5px solid rgba(220,60,60,0.3); color:#f87171; font-size:0.72rem; font-family:'DM Mono',monospace; padding:0.25rem 0.75rem; border-radius:999px; margin-bottom:0.75rem;">
+          <span style="width:6px;height:6px;border-radius:50%;background:#f87171;display:inline-block;"></span>
+          NOW ENROLLING · 4 WEEKS · 20 SPOTS ONLY
+        </div>
+        <h3 style="font-size:1.5rem;">Online Elementary School STEM Program</h3>
+        <p style="margin-top:0.5rem;">A 4-week online STEM adventure for K–5 students — 4 fun Zoom sessions per week. Coding, science, space exploration, and more. Completely free, spots are limited!</p>
+        <div style="display:flex; gap:0.75rem; margin-top:1rem; flex-wrap:wrap; align-items:center;">
+          <span class="card-tag" style="background:rgba(220,60,60,0.1); color:#f87171; border-color:rgba(220,60,60,0.2);">Grades K–5</span>
+          <span class="card-tag">4 Weeks · 16 Sessions</span>
+          <span class="card-tag">Zoom · Free</span>
+          <span class="card-tag">20 Spots Max</span>
+        </div>
       </div>
-      <h3 style="font-size:1.5rem;">Online Elementary School STEM Program</h3>
-      <p style="margin-top:0.5rem;">Free online STEM help for K–5 students across all subjects. Need help? We're here. Spots are limited — register before they fill up!</p>
-      <div style="display:flex; gap:0.75rem; margin-top:1rem; flex-wrap:wrap; align-items:center;">
-        <span class="card-tag" style="background:rgba(220,60,60,0.1); color:#f87171; border-color:rgba(220,60,60,0.2);">Grades K–5</span>
-        <span class="card-tag">All Subjects</span>
-        <span class="card-tag">Online · Free</span>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap; position:relative; z-index:2;">
+        <a href="https://themaxstem.github.io/home/elementary-program.html" target="_blank" class="btn-primary" style="font-size:0.9rem; padding:0.7rem 1.5rem;">View Program</a>
+        <a href="https://bit.ly/490BaJQ" target="_blank" class="btn-outline" style="font-size:0.9rem; padding:0.7rem 1.5rem;">Register Now →</a>
       </div>
     </div>
-    <div style="display:flex; gap:1rem; flex-wrap:wrap; position:relative; z-index:2;">
-      <a href="https://themaxstem.github.io/home/elementary-program.html" target="_blank" class="btn-primary" style="font-size:0.9rem; padding:0.7rem 1.5rem;">View Flyer</a>
-      <a href="https://bit.ly/490BaJQ" target="_blank" class="btn-outline" style="font-size:0.9rem; padding:0.7rem 1.5rem;">Register Now →</a>
+
+    <!-- Top 5 activity highlights -->
+    <div class="highlights-grid" style="margin-top:1.5rem; padding-top:1.5rem; border-top:0.5px solid rgba(255,255,255,0.08);">
+      <div class="highlight-card">
+        <span class="hc-icon">🚀</span>
+        <div class="hc-title">Virtual Scavenger Hunt</div>
+        <div class="hc-desc">Find science items live on camera — spheres, conductors, things that float.</div>
+        <div class="hc-tool">Week 1 · Zoom</div>
+      </div>
+      <div class="highlight-card">
+        <span class="hc-icon">🌍</span>
+        <div class="hc-title">Google Earth Field Trip</div>
+        <div class="hc-desc">Visit the Amazon, Sahara, and Arctic without leaving your chair.</div>
+        <div class="hc-tool">Week 2 · earth.google.com</div>
+      </div>
+      <div class="highlight-card">
+        <span class="hc-icon">💻</span>
+        <div class="hc-title">Scratch Animation Jam</div>
+        <div class="hc-desc">Build a 30-second animated story and share it live with the group.</div>
+        <div class="hc-tool">Week 3 · scratch.mit.edu</div>
+      </div>
+      <div class="highlight-card">
+        <span class="hc-icon">🎮</span>
+        <div class="hc-title">STEM Trivia Showdown</div>
+        <div class="hc-desc">Live team trivia on Kahoot covering everything learned — may the best team win!</div>
+        <div class="hc-tool">Week 4 · Kahoot.it</div>
+      </div>
+      <div class="highlight-card">
+        <span class="hc-icon">🏆</span>
+        <div class="hc-title">Graduation Showcase</div>
+        <div class="hc-desc">Present your favourite project to parents and receive a digital certificate!</div>
+        <div class="hc-tool">Week 4 · Zoom · parents welcome</div>
+      </div>
     </div>
   </div>
-</div>
 
     <!--div class="program-card">
       <div class="card-icon">📰</div>
@@ -528,7 +580,6 @@
       <p>Our annual showcase where student inventors, researchers, and engineers present original projects to peers, educators, and community members.</p>
       <span class="card-tag">Annual Event</span>
 </div-->
-  </div>
 </section>
 
 <!-- GET INVOLVED -->
