@@ -134,7 +134,7 @@
 
   /* INFO CARDS ROW */
   .info-row {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1rem; margin-bottom: 3rem;
   }
   .info-card {
@@ -161,18 +161,65 @@
 
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
 
-  /* SUBJECTS */
-  .subjects-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 0.75rem; margin-bottom: 3rem;
+  /* SCHEDULE */
+  .schedule-section { margin-bottom: 3rem; }
+  .week-block {
+    border: 0.5px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    margin-bottom: 1.25rem;
   }
-  .subject-pill {
-    background: var(--navy-mid); border: 0.5px solid var(--border);
-    border-radius: 10px; padding: 1rem;
-    text-align: center; font-size: 0.85rem; color: #e2e8f0;
-    font-weight: 500;
+  .week-title {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.85rem; font-weight: 600;
+    display: flex; align-items: center; gap: 0.5rem;
   }
-  .subject-pill span { display: block; font-size: 1.4rem; margin-bottom: 0.4rem; }
+  .day-row {
+    display: grid; grid-template-columns: 80px 1fr auto;
+    align-items: center; gap: 1rem;
+    padding: 0.85rem 1.25rem;
+    border-top: 0.5px solid var(--border);
+    background: var(--navy);
+  }
+  .day-label {
+    font-size: 0.72rem; font-weight: 600;
+    color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 0.08em; font-family: 'DM Mono', monospace;
+  }
+  .act-name { font-size: 0.95rem; color: #e2e8f0; font-weight: 500; }
+  .act-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; font-weight: 300; }
+  .act-tool { font-size: 0.75rem; color: var(--text-muted); margin-top: 3px; opacity: 0.7; }
+  .sched-badge {
+    font-size: 0.68rem; padding: 0.2rem 0.6rem;
+    border-radius: 999px; font-weight: 600;
+    white-space: nowrap; font-family: 'DM Mono', monospace;
+  }
+
+  /* Week colors */
+  .w1 .week-title { background: rgba(26,86,219,0.2); color: #93c5fd; }
+  .w1 .sched-badge { background: rgba(26,86,219,0.2); color: #93c5fd; }
+  .w2 .week-title { background: rgba(5,150,105,0.2); color: #6ee7b7; }
+  .w2 .sched-badge { background: rgba(5,150,105,0.2); color: #6ee7b7; }
+  .w3 .week-title { background: rgba(217,119,6,0.2); color: #fcd34d; }
+  .w3 .sched-badge { background: rgba(217,119,6,0.2); color: #fcd34d; }
+  .w4 .week-title { background: rgba(124,58,237,0.2); color: #c4b5fd; }
+  .w4 .sched-badge { background: rgba(124,58,237,0.2); color: #c4b5fd; }
+
+  /* HIGHLIGHT ACTIVITIES */
+  .highlights-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem; margin-bottom: 3rem;
+  }
+  .highlight-card {
+    background: var(--navy-mid);
+    border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1.25rem;
+    transition: border-color 0.2s;
+  }
+  .highlight-card:hover { border-color: rgba(220,38,38,0.3); }
+  .hc-icon { font-size: 1.8rem; margin-bottom: 0.6rem; display: block; }
+  .hc-title { font-size: 0.95rem; font-weight: 600; color: #fff; margin-bottom: 0.3rem; }
+  .hc-desc { font-size: 0.82rem; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
+  .hc-tool { font-size: 0.72rem; color: var(--red-light); margin-top: 0.5rem; font-family: 'DM Mono', monospace; }
 
   /* URGENCY BANNER */
   .urgency-banner {
@@ -217,6 +264,8 @@
   @media (max-width: 600px) {
     .two-col { grid-template-columns: 1fr; }
     .topbar { flex-direction: column; align-items: flex-start; }
+    .day-row { grid-template-columns: 70px 1fr; }
+    .sched-badge { display: none; }
   }
 </style>
 </head>
@@ -232,15 +281,16 @@
 <div class="program-hero">
   <div class="enroll-badge">
     <span class="badge-dot"></span>
-    Now Enrolling · First Come, First Serve
+    Now Enrolling · First Come, First Serve · 20 Spots Only
   </div>
   <h1>Online Elementary<br><em>School STEM</em> Program</h1>
-  <p class="hero-sub">Need help? We're here. Free STEM support for every K–5 student.</p>
+  <p class="hero-sub">4 weeks · 4 days a week · 16 fun online sessions on Zoom · completely free.</p>
   <div class="hero-tags">
-    <span class="tag">📚 All Subjects</span>
     <span class="tag">🎓 Grades K–5</span>
-    <span class="tag">💻 Online</span>
-    <span class="tag">✅ Completely Free</span>
+    <span class="tag">💻 100% Online</span>
+    <span class="tag">📅 4 Weeks</span>
+    <span class="tag">👥 20 Students Max</span>
+    <span class="tag">✅ Free</span>
   </div>
   <div class="cta-buttons">
     <a href="https://bit.ly/490BaJQ" target="_blank" class="btn-red">Register Now</a>
@@ -255,28 +305,33 @@
   <div class="info-row">
     <div class="info-card">
       <span class="ic-icon">🎓</span>
-      <span class="ic-label">Grade Levels</span>
-      <span class="ic-value">Kindergarten – 5th</span>
+      <span class="ic-label">Grades</span>
+      <span class="ic-value">K – 5th</span>
     </div>
     <div class="info-card">
-      <span class="ic-icon">📖</span>
-      <span class="ic-label">Subjects</span>
-      <span class="ic-value">All Subjects</span>
+      <span class="ic-icon">📅</span>
+      <span class="ic-label">Duration</span>
+      <span class="ic-value">4 Weeks</span>
+    </div>
+    <div class="info-card">
+      <span class="ic-icon">📆</span>
+      <span class="ic-label">Days/Week</span>
+      <span class="ic-value">4 Days</span>
+    </div>
+    <div class="info-card">
+      <span class="ic-icon">👥</span>
+      <span class="ic-label">Max Students</span>
+      <span class="ic-value">20 Spots</span>
     </div>
     <div class="info-card">
       <span class="ic-icon">💻</span>
-      <span class="ic-label">Format</span>
-      <span class="ic-value">Online</span>
+      <span class="ic-label">Platform</span>
+      <span class="ic-value">Zoom</span>
     </div>
     <div class="info-card">
       <span class="ic-icon">💰</span>
       <span class="ic-label">Cost</span>
       <span class="ic-value">Free</span>
-    </div>
-    <div class="info-card">
-      <span class="ic-icon">⚡</span>
-      <span class="ic-label">Spots</span>
-      <span class="ic-value">Limited — Act Fast</span>
     </div>
   </div>
 
@@ -285,37 +340,161 @@
     <div>
       <div class="section-tag">// about the program</div>
       <h2>What is this program?</h2>
-      <p>Our Online Elementary School STEM Program is a free homework help and enrichment program built for K–5 students who want extra support in science, technology, engineering, math — and beyond.</p>
-      <p>Run entirely by student volunteers through MaxSTEM, this program connects young learners with older student mentors who can help explain concepts, work through problems, and make learning fun.</p>
+      <p>A 4-week online STEM adventure for K–5 students — 4 fun sessions per week on Zoom. Each session is a hands-on activity covering science, technology, engineering, coding, and more.</p>
+      <p>Run entirely by student volunteers through MaxSTEM. No materials needed — everything happens live online. Just show up, have fun, and learn something new every day.</p>
     </div>
     <div>
       <div class="section-tag">// who can join</div>
       <h2>Who is it for?</h2>
-      <p>Any elementary school student in grades K–5 who needs help with schoolwork, wants to explore STEM topics, or just needs a friendly face to help them understand a tough concept.</p>
-      <p>No previous STEM experience required. All skill levels and subjects are welcome. Parents and guardians are encouraged to reach out with any questions.</p>
+      <p>Any K–5 student who wants to explore STEM in a fun, low-pressure environment. No experience needed — just curiosity and a device with Zoom.</p>
+      <p>Spots are capped at 20 students to keep sessions interactive and personal. Parents and guardians are welcome to observe any session.</p>
     </div>
   </div>
 
-  <!-- SUBJECTS -->
-  <div class="section-tag">// subjects we cover</div>
-  <h2 style="margin-bottom:1.25rem;">All subjects, all grades.</h2>
-  <div class="subjects-grid">
-    <div class="subject-pill"><span>🔢</span>Math</div>
-    <div class="subject-pill"><span>🔬</span>Science</div>
-    <div class="subject-pill"><span>📖</span>Reading</div>
-    <div class="subject-pill"><span>✍️</span>Writing</div>
-    <div class="subject-pill"><span>🌍</span>Social Studies</div>
-    <div class="subject-pill"><span>💻</span>Technology</div>
-    <div class="subject-pill"><span>🧪</span>Experiments</div>
-    <div class="subject-pill"><span>🎨</span>STEAM Arts</div>
+  <!-- TOP 5 HIGHLIGHTS -->
+  <div class="section-tag">// program highlights</div>
+  <h2 style="margin-bottom:1.25rem;">5 activities you'll love.</h2>
+  <div class="highlights-grid">
+    <div class="highlight-card">
+      <span class="hc-icon">🚀</span>
+      <div class="hc-title">Virtual Scavenger Hunt</div>
+      <div class="hc-desc">Find household items matching live science clues on camera — spheres, conductors, things that float.</div>
+      <div class="hc-tool">Week 1 · Zoom</div>
+    </div>
+    <div class="highlight-card">
+      <span class="hc-icon">🌍</span>
+      <div class="hc-title">Google Earth Field Trip</div>
+      <div class="hc-desc">Visit the Amazon rainforest, the Sahara, and the Arctic — all without leaving your chair.</div>
+      <div class="hc-tool">Week 2 · earth.google.com</div>
+    </div>
+    <div class="highlight-card">
+      <span class="hc-icon">💻</span>
+      <div class="hc-title">Scratch Animation Jam</div>
+      <div class="hc-desc">Build a 30-second animated story using Scratch and share it live with the group.</div>
+      <div class="hc-tool">Week 3 · scratch.mit.edu</div>
+    </div>
+    <div class="highlight-card">
+      <span class="hc-icon">🎮</span>
+      <div class="hc-title">STEM Trivia Showdown</div>
+      <div class="hc-desc">Team-based live trivia on Kahoot covering everything learned — may the best team win!</div>
+      <div class="hc-tool">Week 4 · Kahoot.it</div>
+    </div>
+    <div class="highlight-card">
+      <span class="hc-icon">🏆</span>
+      <div class="hc-title">Graduation Showcase</div>
+      <div class="hc-desc">Present your favourite project to parents, get a digital certificate, and take a group photo!</div>
+      <div class="hc-tool">Week 4 · Zoom · with parents</div>
+    </div>
+  </div>
+
+  <!-- FULL SCHEDULE -->
+  <div class="schedule-section">
+    <div class="section-tag">// full schedule</div>
+    <h2 style="margin-bottom:1.25rem;">16 sessions, all online.</h2>
+
+    <div class="week-block w1">
+      <div class="week-title">🚀 Week 1 — Explore &amp; Discover</div>
+      <div class="day-row">
+        <span class="day-label">Day 1</span>
+        <div><div class="act-name">Virtual Scavenger Hunt</div><div class="act-sub">Find household items matching science clues live on camera</div><div class="act-tool">📍 Zoom camera + chat</div></div>
+        <span class="sched-badge">Science</span>
+      </div>
+      <div class="day-row">
+        <span class="day-label">Day 2</span>
+        <div><div class="act-name">Design Your Dream Robot</div><div class="act-sub">Draw a robot that solves a real problem — pitch it in 60 seconds</div><div class="act-tool">📍 Google Slides</div></div>
+        <span class="sched-badge">Engineering</span>
+      </div>
+      <div class="day-row">
+        <span class="day-label">Day 3</span>
+        <div><div class="act-name">Kahoot Science Quiz</div><div class="act-sub">Live quiz about animals, space, and the human body</div><div class="act-tool">📍 Kahoot.it</div></div>
+        <span class="sched-badge">Review</span>
+      </div>
+      <div class="day-row">
+        <span class="day-label">Day 4</span>
+        <div><div class="act-name">Would You Rather: Science Edition</div><div class="act-sub">Live debate — defend your answer with science facts</div><div class="act-tool">📍 Zoom discussion</div></div>
+        <span class="sched-badge">Critical thinking</span>
+      </div>
+    </div>
+
+    <div class="week-block w2">
+      <div class="week-title">🔬 Week 2 — Experiment &amp; Build</div>
+      <div class="day-row">
+        <span class="day-label">Day 5</span>
+        <div><div class="act-name">Tinkercad 3D Design</div><div class="act-sub">Design a house, toy, or bridge in the free 3D browser tool</div><div class="act-tool">📍 tinkercad.com</div></div>
+        <span class="sched-badge">Engineering</span>
+      </div>
+      <div class="day-row">
+        <span class="day-label">Day 6</span>
+        <div><div class="act-name">Google Earth Field Trip</div><div class="act-sub">Visit the Amazon, Sahara, and Arctic — spot the differences live</div><div class="act-tool">📍 earth.google.com</div></div>
+        <span class="sched-badge">Earth science</span>
+      </div>
+      <div class="day-row">
+        <span class="day-label">Day 7</span>
+        <div><div class="act-name">Sketchpad Drawing Challenge</div><div class="act-sub">Draw a cell, solar system, or food chain — label every part</div><div class="act-tool">📍 sketchpad.io</div></div>
+        <span class="sched-badge">Biology</span>
+      </div>
+      <div class="day-row">
+        <span class="day-label">Day 8</span>
+        <div><div class="act-name">NASA Virtual Tour</div><div class="act-sub">Explore Mars and the ISS — share one wow fact with the group</div><div class="act-tool">📍 nasa.gov/eyes</div></div>
+        <span class="sched-badge">Space</span>
+      </div>
+    </div>
+
+    <div class="week-block w3">
+      <div class="week-title">💻 Week 3 — Code &amp; Create</div>
+      <div class="day-row">
+        <span class="day-label">Day 9</span>
+        <div><div class="act-name">Scratch Animation Jam</div><div class="act-sub">Build a 30-second animated story and share it live</div><div class="act-tool">📍 scratch.mit.edu</div></div>
+        <span class="sched-badge">Coding</span>
+      </div>
+      <div class="day-row">
+        <span class="day-label">Day 10</span>
+        <div><div class="act-name">Human Robot Game</div><div class="act-sub">Give step-by-step instructions — learn what code really is</div><div class="act-tool">📍 Zoom screen share</div></div>
+        <span class="sched-badge">Coding</span>
+      </div>
+      <div class="day-row">
+        <span class="day-label">Day 11</span>
+        <div><div class="act-name">Pixel Art Design</div><div class="act-sub">Create pixel art of an animal — learn how screens display images</div><div class="act-tool">📍 piskelapp.com</div></div>
+        <span class="sched-badge">Technology</span>
+      </div>
+      <div class="day-row">
+        <span class="day-label">Day 12</span>
+        <div><div class="act-name">Build a Mini Website</div><div class="act-sub">Make a one-page site about your favourite animal on Google Sites</div><div class="act-tool">📍 sites.google.com</div></div>
+        <span class="sched-badge">Technology</span>
+      </div>
+    </div>
+
+    <div class="week-block w4">
+      <div class="week-title">🏆 Week 4 — Showcase &amp; Celebrate</div>
+      <div class="day-row">
+        <span class="day-label">Day 13</span>
+        <div><div class="act-name">Invention Pitch Prep</div><div class="act-sub">Design an invention that helps your community — write a 3-sentence pitch</div><div class="act-tool">📍 Google Slides or Canva</div></div>
+        <span class="sched-badge">Engineering</span>
+      </div>
+      <div class="day-row">
+        <span class="day-label">Day 14</span>
+        <div><div class="act-name">STEM Trivia Showdown</div><div class="act-sub">Team trivia covering everything from the past 3 weeks</div><div class="act-tool">📍 Kahoot.it or Gimkit</div></div>
+        <span class="sched-badge">Review</span>
+      </div>
+      <div class="day-row">
+        <span class="day-label">Day 15</span>
+        <div><div class="act-name">Project Showcase Presentations</div><div class="act-sub">Pick your favourite project and present it — 2 minutes each</div><div class="act-tool">📍 Zoom screen share</div></div>
+        <span class="sched-badge">Presentation</span>
+      </div>
+      <div class="day-row">
+        <span class="day-label">Day 16</span>
+        <div><div class="act-name">Graduation &amp; Certificate Ceremony</div><div class="act-sub">Parents join for the finale — certificates awarded, group photo!</div><div class="act-tool">📍 Zoom · parents welcome</div></div>
+        <span class="sched-badge">Celebration</span>
+      </div>
+    </div>
   </div>
 
   <!-- URGENCY BANNER -->
   <div class="urgency-banner">
     <div class="ub-icon">⏳</div>
     <div>
-      <h3>Spots are filling up fast!</h3>
-      <p>This is a first come, first serve program. Register using the link below before spots run out. Once full, we cannot guarantee a slot.</p>
+      <h3>Only 20 spots available!</h3>
+      <p>This is a first come, first serve program. Register before spots run out — once full, we cannot guarantee a slot.</p>
     </div>
   </div>
 
